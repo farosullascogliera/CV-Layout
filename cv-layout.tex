@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage{cmbright}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage[sf]{libertine}
+\usepackage{microtype}
+\usepackage{paracol}
+\usepackage{supertabular}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{changepage}
+\usepackage{background} % For full background
+
+
+\hypersetup{colorlinks, urlcolor=black, linkcolor=black}
+
+
+% COLORS
+\definecolor{myBeige}{HTML}{F2E9DD}
+\definecolor{myOtherBeige}{HTML}{F7F2EB}
+
+\definecolor{myGray}{HTML}{505B8C}
+\definecolor{myGrayDarkish}{HTML}{323C5A}
+\definecolor{myGrayDark}{HTML}{232A3F}
+\definecolor{myGrayLight}{HTML}{7D7DA5}
+\definecolor{myGrayDarkER}{HTML}{3E3D4B}
+
+\pagecolor{myBeige}
+\color{myGrayDark}
+
+% GEOMETRY
+\newcommand{\lcolratio}{0.70}
+\newcommand{\rcolratio}{0.30}
+\geometry{hmargin=1cm, vmargin=1cm, includefoot}
+\columnratio{\lcolratio, \rcolratio}
+\setlength\columnsep{0.09\textwidth}
+\setlength\parindent{0pt}
+\setlength{\smallskipamount}{8pt plus 3pt minus 4pt}
+\setlength{\medskipamount}{16pt plus 6pt minus 6pt}
+\setlength{\bigskipamount}{24pt plus 8pt minus 8pt}
+\setlist[itemize]{left=0pt} % Adjust the indentation for itemize
+
+
+% STYLE
+\pagestyle{fancy}
+\titleformat{\section}{\scshape\LARGE\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{\bigskipamount}{\smallskipamount}
+
+% Set background for each page: left half blue, right half red
+\backgroundsetup{
+    scale=1,
+    color=white,
+    opacity=1,
+    angle=0,
+    position=current page.south west,
+    nodeanchor=south west,
+    contents={%
+        \begin{tikzpicture}[remember picture,overlay]
+            % Left column background (70% of the content area width, excluding horizontal margins)
+            \fill[myBeige] ([xshift=0]current page.south west) rectangle ([xshift=\lcolratio\textwidth+1cm]current page.north east);
+            % Right column background (30% of the content area width, excluding horizontal margins)
+            \fill[myOtherBeige] ([xshift=\lcolratio\textwidth+0.65cm]current page.south west) rectangle ([xshift=0]current page.north east);
+        \end{tikzpicture}
+    }
+}
+
+
+
+% COMMANDS
+
+% Replace \textperiodcentered with \pc
+\newcommand{\pc}{\textperiodcentered}
+
+\newcommand{\smallvspace}{\noalign{\vskip 5pt}}
+
+% Heading command with large sans-serif title and small caps subtitle
+\newcommand{\heading}[2]{%
+    {\scshape\Huge #1}\\[0.5em]%
+    {\scshape\LARGE #2}%
+}
+
+% General entry command with title, subtitle, left-aligned date, and right-aligned location
+\newcommand{\entry}[4]{%
+    {\large\textbf{#1}} \hfill #3 \\%
+    #2 \hfill #4%
+}
+
+% Job entry command with colored title, subtitle, right-aligned location and date
+\newcommand{\jobentry}[4]{%
+    {\Large\textbf{#1}} \hfill {\large\textbf{#3}} \\%
+    \rlap{\large\textbf{#2}} \hfill #4%
+}
+
+% Smaller entry command with colored title, subtitle, right-aligned location and date
+\newcommand{\entrySmall}[4]{
+    {\scshape\large\textbf{#1}} \hfill #3 \\
+    #2 \hfill #4
+}
+
+% Table entry command with title, description, and optional padding
+\newcommand{\tableentry}[3]{
+    \textsc{#1} & #2
+    \ifstrequal{#3}{}{\\}{\\[6pt]}
+}
+
+% Job point command with title and description
+\newcommand{\jobpoint}[2]{
+    {\large\textbf{#1}}\\
+    {#2}
+}
+
+% DOCUMENT
+\begin{document}
+
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize{I authorize the processing of personal data in accordance with\\Legislative Decree 2018/101 and the GDPR (EU Regulation 2016/679).}}
+
+\vspace*{\fill}
+
+\begin{paracol}{2}
+
+    % Name & headline
+    \heading{Nice Name}{Profession}
+
+    \switchcolumn
+    % Identity card
+    \begin{supertabular}{ll}
+        \footnotesize\faPhone    & \href{tel:+123456789}{+12 34 56 78 9} \\
+        \footnotesize\faEnvelope & \href{mailto:mail@to.dom}{mail@to.dom} \\
+        \footnotesize\faLinkedin & \href{https://www.linkedin.com/in/linkedinaccount}{/linkedinaccount} \\
+        \footnotesize\faGithub   & \href{https://www.github.com/githubaccount/}{/githubaccount} \\
+    \end{supertabular}
+
+    \switchcolumn*
+    
+    \section{ABOUT ME}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+    \section{Relevant Work Experience}
+
+    \jobentry{Job}{Place}{Year}{}
+
+    \begin{itemize}
+        \item Lorem ipsum odor amet, consectetuer adipiscing elit. Sem posuere fusce ultrices eros malesuada auctor dictum. Hac eget enim mollis dis eros; duis tortor.
+        \item Ultrices ultrices conubia dui duis montes lectus. Curae odio aenean eleifend, odio mauris erat. Felis nostra praesent morbi natoque nibh mauris tortor.
+        \item Nostra gravida tortor rutrum viverra lacinia lacus. Egestas nam quisque ridiculus dis magnis ullamcorper, tristique dignissim. Maecenas ultricies arcu aenean conubia ex.
+        \end{itemize}
+
+
+    \medskip
+    
+    \jobentry{Job}{Place}{Year}{}
+
+    \begin{itemize}
+        \item Lorem ipsum odor amet, consectetuer adipiscing elit. Sem posuere fusce ultrices eros malesuada auctor dictum. Hac eget enim mollis dis eros; duis tortor.
+        \item Ultrices ultrices conubia dui duis montes lectus. Curae odio aenean eleifend, odio mauris erat. Felis nostra praesent morbi natoque nibh mauris tortor.
+        \item Nostra gravida tortor rutrum viverra lacinia lacus. Egestas nam quisque ridiculus dis magnis ullamcorper, tristique dignissim. Maecenas ultricies arcu aenean conubia ex.
+        \end{itemize}
+    
+
+    \switchcolumn
+
+    \section{Skills}
+    \begin{supertabular}{ll}
+        \textbf{Skill} \pc{} \textbf{Skill} \\
+        \textbf{Skill} \pc{} Skill \pc{} Skill \\
+        
+        \phantom{}\\
+        
+        \textbf{First Language} \pc{} native speaker \\
+        \textbf{Second Language} \pc{} C1/C2 \\
+
+    \end{supertabular}
+    
+
+    \section{certifications}
+    \begin{supertabular}{ll}
+        \textbf{Cert} \\
+        \textbf{Cert} \\
+        \phantom{}\\
+        Driving Licence \\
+    \end{supertabular}
+    
+
+    \pagebreak
+    \switchcolumn*
+
+    
+\section{personal experiences}
+
+\smallskip
+    
+    \jobpoint{Experience}{Lorem ipsum odor amet, consectetuer adipiscing elit. Sem posuere fusce ultrices eros malesuada auctor dictum. Hac eget enim mollis dis eros; duis tortor. Ultrices ultrices conubia dui duis montes lectus. Curae odio aenean eleifend, odio mauris erat. Felis nostra praesent morbi natoque nibh mauris tortor.}
+    
+    \medskip
+    
+    \jobpoint{Experience}{Egestas nam quisque ridiculus dis magnis ullamcorper, tristique dignissim. Maecenas ultricies arcu aenean conubia ex. Tellus placerat ante ante felis vestibulum; odio mauris neque nostra. Fames euismod nullam non sapien nostra tellus semper faucibus aliquam.}
+
+    \medskip
+            
+    \jobpoint{Experience}{Porta himenaeos est accumsan quisque sem finibus. Pretium enim class euismod; praesent lobortis montes nam eleifend. Libero ornare leo aliquet etiam quisque ornare et. Integer efficitur mattis nisl libero proin. Odio eros parturient vulputate in et ad. Tempus dis tincidunt dictumst sollicitudin mi et potenti tempor magna.}
+    
+    \switchcolumn
+
+    \section{education}
+        \entrySmall{Bachelor}{University of Bacheloria}{}{Year}
+        
+        
+        \smallskip
+        
+        \entrySmall{Diploma}{\phantom{}}{}{Year}
+
+    \section{passions}
+    \begin{supertabular}{ll}
+        Passion \\
+        Passion \\
+        Passion \\
+    \end{supertabular}
+
+\switchcolumn*
+
+\end{paracol}
+
+\end{document}
